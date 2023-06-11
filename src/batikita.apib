@@ -1,0 +1,134 @@
+FORMAT: 1A
+HOST: http://batikita.herokuapp.com/index.php
+
+# BatiKita API
+
+BatiKita merupakan sebuah aplikasi yang dapat memberikan informasi mengenai motif batik, dengan memberikan kata kunci atau mengunggah citra sehingga user tidak perlu melakukan pencarian informasi secara manual.
+
+## Batik View Count [/batik]
+
+Update view count for a specific batik in database. This action returns a 200 status code along with a JSON body.
+
+### Update View Count [PUT]
+
++ Request ( application/x-www-form-urlencoded )
+
+        batik = nama batik
+
++ Response 200 (text/plain)
+        
+        Update View Count "nama batik" successful! 
+
+## Batik Search [/batik/{keyword}]
+
+Search batiks from Batikita's database using a keyword. It will retreieve all batiks from database that match the keyword.This action returns a 200 status code along with a JSON body.
+
++ Parameters
+    + keyword (String) - keyword to search for batik
+
+### Search Batik by Keyword [GET]
+
++ Response 200 (application/json)
+
+        {
+          "hasil": [
+            {
+              "id": 128,
+              "nama_batik": "Kawung",
+              "daerah_batik": "Cirebon",
+              "makna_batik": "Kawung dalam bahasa Sunda mempunyai arti buah aren atau kolang-kolang kaling. Jadi motif batik kawung menyerupai buah kolang-kaling yang dibelah melintang sehingga terlihat motif 4 biji. Dan biasanya digunakan untuk pengantin putrid.",
+              "harga_rendah": 80750,
+              "harga_tinggi": 205000,
+              "hitung_view": 0,
+              "link_batik": "https://i1.wp.com/obatrindu.com/wp-content/uploads/2016/09/motif-batik-kawung-2.jpg"
+            }
+          ],
+          "total_halaman": 0,
+          "total_element": 1,
+          "min_price": 80750,
+          "max_price": 205000
+        }
+
+## Batik Filter Search [/batik/harga/{keyword}/{min}/{max}]
+
+Search batiks from Batikita's database using a keyword and a price range. It will retrieve all batiks from database that match the keyword and the price range. This action returns a 200 status code along with a JSON body.
+
++ Parameters
+    + keyword (String) - keyword to search for batik
+    + min (Integer) - min price for batik with selected keyword
+    + max (Integer) - max price for batik with selected keyword
+
+### Search with Price Filter [GET]
+
++ Response 200 (application/json)
+
+        {
+            "hasil": [
+                {
+                    "id": 128,
+                    "nama_batik": "Kawung",
+                    "daerah_batik": "Cirebon",
+                    "makna_batik": "Kawung dalam bahasa Sunda mempunyai arti buah aren atau kolang-kolang kaling. Jadi motif batik kawung menyerupai buah kolang-kaling yang dibelah melintang sehingga terlihat motif 4 biji. Dan biasanya digunakan untuk pengantin putrid.",
+                    "harga_rendah": 80750,
+                    "harga_tinggi": 205000,
+                    "hitung_view": 0,
+                    "link_batik": "https://i1.wp.com/obatrindu.com/wp-content/uploads/2016/09/motif-batik-kawung-2.jpg"
+                }
+            ],
+            "total_halaman": 0,
+            "total_element": 1,
+            "min_price": 80750,
+            "max_price": 205000
+        }
+
+## All Batik Collections [/batik/all]
+
+Retrieve all batik collections in databse regardlesss of the pattern, origin, or meaning. This action returns a 200 status code along with a JSON body.
+
+### Retrieve All Batik [GET]
+
++ Response 200 (application/json)
+
+        {
+          "hasil": [
+            {
+              "id": 143,
+              "nama_batik": "Abimanyu",
+              "daerah_batik": "Solo",
+              "makna_batik": "Abimanyu merupakan putra Arjuna (Pandawa). Ia akan mempunyai keturunan (Parikesit) yg akan menurunkan ksatria yg menjadi raja-raja Jawa. Motif ini menyiratkan harapan agar pemakainya dapat memiliki sifat sifat ksatria seperti sang Abimanyu.\r\n\r\nDemikianlah motif batik beserta maknanya yang ada di bumi nusantara ini, saya kumpulkan dari berbagai sumber, dan cukup melelahkan mencarinya. Pada kenyataannya memang masih ada beberapa motif lagi yang belum saya muat di sini. Mudah mudahan lain kali saya bisa memuat lebih banyak lagi motif batik sehingga bisa membantu anda untuk lebih mengenal motif batik dan filosofi batik lainnya,ya..",
+              "harga_rendah": 141000,
+              "harga_tinggi": 247000,
+              "hitung_view": 0,
+              "link_batik": "https://harryani.files.wordpress.com/2010/11/abimanyu.jpg"
+            },
+            "total_halaman": 1,
+            "total_element": 1,
+            "min_price": 141000,
+            "max_price": 247000
+        }
+
+## Popular Batik Collections [/batik/popular]
+
+Retrieve 6 most popular batiks from batik collections in databse regardlesss of the pattern, origin, or meaning.This action returns a 200 status code along with a JSON body.
+
+### Retreive All Popular Batik [GET]
++ Response 200 (application/json)
+
+        {
+            "hasil": [
+                {
+                    "id": 97,
+                    "nama_batik": "Slobog",
+                    "daerah_batik": "Yogyakarta",
+                    "makna_batik": "Slobog mempunyai arti lobok atau longgar. Kain ini biasanya dipakai untuk melayat, mempunyai tujuan agar orang yang meninggal tidak mendapatkan kesulitan disaat menghadap kepada Yang Maha Kuasa.\n\nDalam batik Slobog ini mempunyai prinsip-prinsip yang kuat tentang keagamaan bahwa manusia setelah mengalami kematian akan hidup lagi dan mengalami kehidupan yang berbeda di kehidupan lain, yaitu berjumpa dengan Tuhan Yang Maha Esa.",
+                    "harga_rendah": 141000,
+                    "harga_tinggi": 247000,
+                    "hitung_view": 0,
+                    "link_batik": "https://i1.wp.com/obatrindu.com/wp-content/uploads/2016/09/Motif-Batik-Slobog.jpg"
+                }
+            ],
+            "total_halaman": 1,
+            "total_element": 6,
+            "min_price": 89250,
+            "max_price": 247000
+        }
